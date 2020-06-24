@@ -3,3 +3,5 @@ node_modules/
 *.log
 haters/
 .idea/
+*-FINISHED.html
+*-FINISHED.js
