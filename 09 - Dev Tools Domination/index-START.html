@@ -18,28 +18,59 @@
     }
 
     // Regular
+    console.log('i\'m a log');
 
     // Interpolated
+    console.log('hey %s!!!', 'you');
 
     // Styled
-
+    console.log('%c I\'m a styled log', 
+    'font-size: 50px; background: purple; text-shadow: 10px 10px 0 yellow;');
+    
     // warning!
+    console.warn('dahhhhhhhhhhh');
 
     // Error :|
+    console.error('errrrrrrroooooooooorrrrrrrrrrrr')
 
     // Info
+    console.info('I am not who i want to be');
 
     // Testing
+    console.assert(document.querySelector('p').classList.contains('findme'), 'Not Found!');
+    console.assert(!document.querySelector('p').classList.contains('findme'), 'Successed');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.dir(document.querySelector('p'));
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`my name is ${dog.name}`);
+      console.log(`my age is ${dog.age}`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('hi');
+    console.count('by');
+    console.count('hi');
+    console.count('by');
+    console.count('hi');
+    console.count('by');
+    console.count('hi');
 
     // timing
+    console.time('fetching Data');
+    fetch('https://api.github.com/users/saraheisa')
+    .then(blob => blob.json())
+    .then(data => {
+      console.timeEnd('fetching Data');
+      console.table(data);
+    });
 
   </script>
 </body>
