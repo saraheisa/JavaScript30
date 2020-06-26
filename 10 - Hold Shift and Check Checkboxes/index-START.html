@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hold Shift to Check Multiple Checkboxes</title>
 </head>
 <body>
@@ -37,6 +38,8 @@
 
     input[type="checkbox"] {
       margin: 20px;
+      width: 2em;
+      height: 2em;
     }
 
     p {
@@ -96,6 +99,32 @@
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll('input[type=checkbox]');
+  
+  let lastChecked = null;
+  let lastCheckedIndex = -1;
+
+  function selectInbetween (index) {
+    if (index < lastCheckedIndex) {
+      let temp = index;
+      index = lastCheckedIndex;
+      lastCheckedIndex = temp;
+    }
+    for (let i = lastCheckedIndex+1; i < index; i++) {
+      checkboxes[i].checked = true
+    }
+  }
+
+  checkboxes.forEach((cb, index) => {
+    cb.addEventListener('click', function(e){
+      if ( e.shiftKey && lastChecked.checked && this.checked) {
+        selectInbetween(index);
+      }
+      lastChecked = this;
+      lastCheckedIndex = index;
+    });
+  });
+
 </script>
 </body>
 </html>
